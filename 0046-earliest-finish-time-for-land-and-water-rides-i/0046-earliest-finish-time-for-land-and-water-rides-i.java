@@ -3,15 +3,37 @@ class Solution {
         int output=Integer.MAX_VALUE;
         for(int i=0;i<landStartTime.length;i++){
             for(int j=0;j<waterStartTime.length;j++){
-                int landFinish =landStartTime[i] + landDuration[i];
-
-                int finish1 =Math.max(landFinish,waterStartTime[j])+ waterDuration[j];
-
-                int waterFinish =waterStartTime[j] + waterDuration[j];
-
-                int finish2 =Math.max(waterFinish,landStartTime[i])+ landDuration[i];
-
-                output = Math.min(output,Math.min(finish1, finish2));
+                int step1=0;
+                int step2=0;
+                int stepfinal=0;
+                if(landStartTime[i]<=waterStartTime[j]){
+                    step1=landStartTime[i]+landDuration[i];
+                    if(step1>=waterStartTime[j]){
+                        step1=(step1-waterStartTime[j])+waterStartTime[j]+waterDuration[j];
+                    }
+                    else{
+                        step1=waterStartTime[j]+waterDuration[j];
+                    }
+                }
+                else if(landStartTime[i]>=waterStartTime[j]){
+                    step2=waterStartTime[j]+waterDuration[j];
+                    if(step2>=landStartTime[i]){
+                        step2=(step2-landStartTime[i])+landStartTime[i]+landDuration[i];
+                    }
+                    else{
+                        step2=landStartTime[i]+landDuration[i];
+                    }
+                }
+                if(step1!=0 && step2!=0){
+                    stepfinal=Math.min(step1,step2);
+                }
+                else if(step1!=0){
+                    stepfinal=step1;
+                }
+                else{
+                    stepfinal=step2;
+                }
+                output=Math.min(output,stepfinal);
             }
         }
         return output;
