@@ -7,10 +7,10 @@ class Solution {
         char [] input=s.toCharArray();
 
         while(left<right){
-            if(input[left]=='a' || input[left]=='e' || input[left]=='i' || input[left]=='o' || input[left]=='u' ||input[left]=='A' || input[left]=='E' || input[left]=='I' || input[left]=='O' || input[left]=='U'){
+            if(check(input[left])){
                 point1=1;
             }
-            if(input[right]=='a' || input[right]=='e' || input[right]=='i' || input[right]=='o' || input[right]=='u' ||input[right]=='A' || input[right]=='E' || input[right]=='I' || input[right]=='O' || input[right]=='U'){
+            if(check(input[right])){
                 point2=1;
             }
             if(point1==1 && point2==1){
@@ -35,6 +35,12 @@ class Solution {
 
         }
         return new String(input);
+    }
+    private boolean check(char a){
+        if(a=='a' || a=='e' || a=='i' || a=='o' || a=='u' ||a=='A' || a=='E' || a=='I' || a=='O' || a=='U'){
+            return true;
+        }
+        return false;
     }
 }
 
