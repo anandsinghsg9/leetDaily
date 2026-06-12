@@ -1,19 +1,36 @@
 class Solution {
     public String reverseWords(String s) {
-        String[] words = s.trim().split("\\s+");
-
-        StringBuilder ans = new StringBuilder();
-
-        for(int i = words.length - 1; i >= 0; i--) {
-
-            ans.append(words[i]);
-
-            if(i != 0) {
-                ans.append(" ");
+        int left=0;
+        HashMap <Integer,String> map=new HashMap<>();
+        int point=0;
+        int value=1;
+        String word="";
+        char check=' ';
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)!=check){
+                word+=s.charAt(i);
+                point=0;
+            }
+            else{
+                point=1;
+            }
+            if(word.length()>0 && point==1){
+                map.put(value,word);
+                word="";
+                value++;
             }
         }
-
-        return ans.toString();
+        if(word!=""){
+                map.put(value,word);
+                point=0;
+            }
+        word="";
+        while(point<value){
+            word+=map.get(value-point)+" ";
+            point++;
+        }
+        word=word.substring(0,word.length()-1);
+        return word;
     }
 }
 
