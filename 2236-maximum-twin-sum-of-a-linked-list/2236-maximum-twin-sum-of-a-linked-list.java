@@ -10,9 +10,6 @@
  */
 class Solution {
     public int pairSum(ListNode head) {
-        if(head==null){
-            return 0;
-        }
         ListNode slowPoint=head;
         ListNode fastPoint=head;
         while(fastPoint!=null){
