@@ -13,10 +13,8 @@ class Solution {
         if(head==null){
             return 0;
         }
-        ListNode slowPoint=new ListNode();
-        ListNode fastPoint=new ListNode();
-        slowPoint=head;
-        fastPoint=head;
+        ListNode slowPoint=head;
+        ListNode fastPoint=head;
         while(fastPoint!=null){
             slowPoint=slowPoint.next;
             fastPoint=fastPoint.next.next;
@@ -24,8 +22,7 @@ class Solution {
         ListNode prev=new ListNode();
         prev=null;
         while(slowPoint!=null){
-            ListNode next=new ListNode();
-            next=slowPoint.next;
+            ListNode next=slowPoint.next;
             slowPoint.next=prev;
             prev=slowPoint;
             slowPoint=next;
