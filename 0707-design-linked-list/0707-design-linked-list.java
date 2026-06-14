@@ -10,35 +10,28 @@ class MyLinkedList {
 
     Node head;
     Node tail;
+    int size;
 
     public MyLinkedList() {
         head=null;
         tail=null;
+        size = 0;
     }
 
-    // Time complexity: O(n), where n is the number of nodes in the list
+    // Time complexity: O(1), where n is the number of nodes in the list
     // Space complexity: O(1), as we are only using a constant amount of space
-    public int count(Node head){
-        if(head==null){
-            return 0;
-        }
-        Node temp=head;
-        int count=1;
-        while(temp.next!=null){
-            count++;
-            temp=temp.next;
-        }
-        return count;
+    public int count() {
+        return size;
     }
     
     // Time complexity: O(n), where n is the index
     // Space complexity: O(1), as we are only using a constant amount of space
     public int get(int index) {
-        if(index>=count(head)){
+        if(index >= count()){
             return -1;
         }
         Node temp=head;
-        while(index>0){
+        while(index > 0){
             temp=temp.next;
             index--;
         }
@@ -49,98 +42,80 @@ class MyLinkedList {
     // Space complexity: O(1), as we are only using a constant amount of space
     public void addAtHead(int val) {
         Node newNode=new Node(val);
-        if(count(head)==0){
+        if(count() == 0){
             tail=newNode;
             head=newNode;
-            return;
+        } else {
+            newNode.next=head;
+            head=newNode;
         }
-        newNode.next=head;
-        head=newNode;
+        size++;
     }
     
-    // Time complexity: O(n), where n is the number of nodes in the list
+    // Time complexity: O(1), where n is the number of nodes in the list
     // Space complexity: O(1), as we are only using a constant amount of space
     public void addAtTail(int val) {
         Node newNode=new Node(val);
-        if(head==null){
+        if(count() == 0){
             head=newNode;
             tail=newNode;
-            return;
+        } else {
+            tail.next=newNode;
+            tail=newNode;
         }
-        tail.next=newNode;
-        tail=newNode;
+        size++;
     }
     
     // Time complexity: O(n), where n is the index
     // Space complexity: O(1), as we are only using a constant amount of space
     public void addAtIndex(int index, int val) {
-        int len=count(head);
-        if(index>len){
+        if(index > count()){
             return;
         }
         Node newNode=new Node(val);
-        Node temp=head;
-        if(index==len){
-            addAtTail(val);
-            return;
-        }
-        if(index==0){
+        if(index == 0){
             addAtHead(val);
             return;
         }
-        while(index>1){
+        if(index == count()){
+            addAtTail(val);
+            return;
+        }
+        Node temp=head;
+        while(index > 1){
             temp=temp.next;
             index--;
         }
         newNode.next=temp.next;
         temp.next=newNode;
+        size++;
     }
     
     // Time complexity: O(n), where n is the index
     // Space complexity: O(1), as we are only using a constant amount of space
     public void deleteAtIndex(int index) {
-        int len=count(head);
-        if(len<=index){
+        if(index >= count()){
             return;
         }
-        if(index==0){
+        if(index == 0){
             head=head.next;
-            return;
+            if(head == null){
+                tail = null;
+            }
+        } else {
+            Node temp=head;
+            while(index > 1){
+                temp=temp.next;
+                index--;
+            }
+            temp.next=temp.next.next;
+            if(temp.next == null){
+                tail=temp;
+            }
         }
-
-        Node temp=head;
-        while(index>1){
-            temp=temp.next;
-            index--;
-        }
-        temp.next=temp.next.next;
-        if(temp.next==null){
-            tail=temp;
-        }
-
+        size--;
     }
 }
-
-// Your current implementation is mostly correct, but you can improve the time complexity of addAtTail by keeping a reference to the tail node.
-// Consider adding a tail node to your MyLinkedList class to improve the efficiency of adding nodes at the end of the list. 
-
-// Time complexity analysis:
-// - count: O(n)
-// - get: O(n)
-// - addAtHead: O(1)
-// - addAtTail: O(n)
-// - addAtIndex: O(n)
-// - deleteAtIndex: O(n)
-
-// Ideal time complexity:
-// - count: O(1) (if you keep a size variable)
-// - get: O(n)
-// - addAtHead: O(1)
-// - addAtTail: O(1) (if you keep a tail node)
-// - addAtIndex: O(n)
-// - deleteAtIndex: O(n)
-
-// Consider submitting your solution and then exploring ways to improve the time complexity of your implementation.
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
