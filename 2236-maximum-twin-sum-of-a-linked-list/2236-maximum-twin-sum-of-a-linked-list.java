@@ -19,8 +19,7 @@ class Solution {
             slowPoint=slowPoint.next;
             fastPoint=fastPoint.next.next;
         }
-        ListNode prev=new ListNode();
-        prev=null;
+        ListNode prev=null;
         while(slowPoint!=null){
             ListNode next=slowPoint.next;
             slowPoint.next=prev;
