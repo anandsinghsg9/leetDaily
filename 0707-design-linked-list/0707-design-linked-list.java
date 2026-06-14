@@ -9,9 +9,11 @@ class MyLinkedList {
     }
 
     Node head;
+    Node tail;
 
     public MyLinkedList() {
         head=null;
+        tail=null;
     }
 
     // Time complexity: O(n), where n is the number of nodes in the list
@@ -48,6 +50,7 @@ class MyLinkedList {
     public void addAtHead(int val) {
         Node newNode=new Node(val);
         if(count(head)==0){
+            tail=newNode;
             head=newNode;
             return;
         }
@@ -59,17 +62,13 @@ class MyLinkedList {
     // Space complexity: O(1), as we are only using a constant amount of space
     public void addAtTail(int val) {
         Node newNode=new Node(val);
-        int len=count(head);
-        if(len==0){
+        if(head==null){
             head=newNode;
+            tail=newNode;
             return;
         }
-        Node temp=head;
-        while(len>1){
-            temp=temp.next;
-            len--;
-        }
-        temp.next=newNode;
+        tail.next=newNode;
+        tail=newNode;
     }
     
     // Time complexity: O(n), where n is the index
@@ -108,12 +107,16 @@ class MyLinkedList {
             head=head.next;
             return;
         }
+
         Node temp=head;
         while(index>1){
             temp=temp.next;
             index--;
         }
         temp.next=temp.next.next;
+        if(temp.next==null){
+            tail=temp;
+        }
 
     }
 }
