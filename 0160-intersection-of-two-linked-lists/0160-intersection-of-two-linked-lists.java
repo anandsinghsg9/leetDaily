@@ -17,7 +17,7 @@ public class Solution {
             temp1=(temp1==null)? headB:temp1.next;
             temp2=(temp2==null)? headA:temp2.next;
         }
-        return temp1;
+        return temp2;
     }
 }
 
