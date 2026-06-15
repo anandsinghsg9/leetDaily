@@ -13,19 +13,18 @@ class Solution {
         if(head.next==null){
             return null;
         }
-        int count=1;
-        ListNode temp=head;
-        while(temp.next!=null){
-            temp=temp.next;
-            count++;
+        ListNode temp1=head.next;
+        ListNode temp2=head;
+        while(temp1.next!=null){
+            if(temp1.next.next==null){
+                temp1=temp1.next;
+            }
+            else{
+                temp1=temp1.next.next;
+                temp2=temp2.next;
+            }
         }
-        count=count/2;
-        temp=head;
-        while(count>1){
-            temp=temp.next;
-            count--;
-        }
-        temp.next=temp.next.next;
+        temp2.next=temp2.next.next;
         return head;
     }
 }
