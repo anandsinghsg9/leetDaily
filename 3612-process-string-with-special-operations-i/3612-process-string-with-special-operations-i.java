@@ -4,9 +4,8 @@ class Solution {
         for(int i=0;i<s.length();i++){
             char ch=s.charAt(i);
             if(ch=='*'){
-                int lena=a.length();
-                if(lena>0){
-                    a.deleteCharAt(lena-1);
+                if(a.length()>0){
+                    a.deleteCharAt(a.length()-1);
                 }
             }
             else if(ch=='#'){
