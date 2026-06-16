@@ -4,7 +4,10 @@ class Solution {
         for(int i=0;i<s.length();i++){
             char ch=s.charAt(i);
             if(ch=='*'){
-                a=(a.length()==0)? a:a.deleteCharAt(a.length()-1);
+                int lena=a.length();
+                if(lena>0){
+                    a.deleteCharAt(lena-1);
+                }
             }
             else if(ch=='#'){
                 a.append(a.toString());
