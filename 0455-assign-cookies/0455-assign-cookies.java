@@ -1,21 +1,24 @@
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
-        // 1. Sort both the greed factors and the cookie sizes
+        int output=0;
+        int up=0;
+        int down=0;
         Arrays.sort(g);
         Arrays.sort(s);
-        
-        int childIndex = 0;
-        int cookieIndex = 0;
-        
-        // 2. Iterate through cookies to find matches
-        while (childIndex < g.length && cookieIndex < s.length) {
-            // If the current cookie can satisfy the current child
-            if (s[cookieIndex] >= g[childIndex]) {
-                childIndex++; // Move to the next child
+        while(down<s.length && up<g.length){
+            if(g[up]<=s[down]){
+                output++;
+                up++;
+                down++;
             }
-            // Move to the next cookie regardless (if it was too small or used)
-            cookieIndex++;
+            else{
+                down++;
+            }
         }
-         return childIndex;
+        return output;
     }
 }
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
