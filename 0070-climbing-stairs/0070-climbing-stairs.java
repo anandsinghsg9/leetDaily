@@ -1,23 +1,21 @@
 class Solution {
+    int dp[];
     public int climbStairs(int n) {
-        if (n <= 2)
-            return n;
-
-        int first = 1;
-        int second = 2;
-
-        for (int i = 3; i <= n; i++) {
-
-            int current = first + second;
-
-            first = second;
-            second = current;
-        }
-
-        return second;
+        dp=new int [n-1];
+        Arrays.fill(dp,-1);
+        return solve(n);
     }
-
-    
+    public int solve(int n){
+        if(n<=2){
+            return n;
+        }
+        if(dp[n-2]!=-1){
+            return dp[n-2];
+        }
+        else {
+            return dp[n-2]=solve(n-1)+solve(n-2);
+        }
+    }
 }
 
 // Synced seamlessly with LeetHub Pro
