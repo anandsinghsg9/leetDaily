@@ -14,7 +14,7 @@ class Solution {
         if(dp[i]!=null){
             return dp[i];
         }
-        for(int jump=1;jump<nums[i]+1;jump++){
+        for(int jump=nums[i];jump>0;jump--){
             if(solve(nums,i+jump)){
                 return dp[i]=true;
             }
