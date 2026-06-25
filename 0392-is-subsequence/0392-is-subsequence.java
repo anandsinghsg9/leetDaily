@@ -1,19 +1,20 @@
 class Solution {
     public boolean isSubsequence(String s, String t) {
-        if(s.length()==0){
-            return true;
-        }
-        int i=0;
-        int j=0;
-        while(j<t.length()){
-            if(s.charAt(i)==t.charAt(j)){
-                i++;
+        int a=0;
+        int b=0;
+        while(a<s.length() && b<t.length()){
+            if(s.charAt(a)==t.charAt(b)){
+                a++;
+                b++;
             }
-            j++;
-            if(i==s.length()){
-                return true;
+            else{
+                b++;
             }
         }
-        return false;
+        return a==s.length();
     }
 }
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
