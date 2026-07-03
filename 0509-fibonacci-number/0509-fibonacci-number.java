@@ -1,16 +1,14 @@
 class Solution {
     public int fib(int n) {
-        if (n <= 1) return n;   // base cases: F(0)=0, F(1)=1
-        int a = 0, b = 1;
-        for (int i = 2; i <= n; i++) {
-            int c = a + b;
-            a = b;
-            b = c;
-        }
-        return b;
+        if (n == 0)
+            return 0;
+
+        if (n == 1)
+            return 1;
+
+        return fib(n - 1) + fib(n - 2);
     }
 }
-
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
