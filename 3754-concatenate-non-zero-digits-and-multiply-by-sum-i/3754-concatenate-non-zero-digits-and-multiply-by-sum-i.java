@@ -4,9 +4,10 @@ class Solution {
         double multiply=0;
         int count=1;
         while(n>0){
-            if((n%10)!=0){
-                sum+=n%10;
-                multiply=((n%10)*(Math.pow(10,count)))+multiply;
+            int step=n%10;
+            if(step!=0){
+                sum+=step;
+                multiply=(step*(Math.pow(10,count)))+multiply;
                 count++;
             }
             n=n/10;
