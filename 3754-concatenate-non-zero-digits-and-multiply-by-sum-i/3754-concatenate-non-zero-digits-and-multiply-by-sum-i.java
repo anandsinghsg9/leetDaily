@@ -12,8 +12,7 @@ class Solution {
             }
             n=n/10;
         }
-        multiply=(long)(multiply/10);
-        return (long)multiply*sum;
+        return (long)(multiply/10)*sum;
     }
 }
 
