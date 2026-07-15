@@ -1,8 +1,6 @@
 class Solution {
     public int gcdOfOddEvenSums(int n) {
-        int odd=n*n;
-        int even=(n*n)+n;
-        return findGCD(even, odd);
+        return findGCD(((n*n)+n), (n*n));
     }
     public int findGCD(int even, int odd){
         if(even%odd==0){
