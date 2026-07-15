@@ -9,17 +9,20 @@ class Solution {
             if(height[left]<height[right]){
                 left++;
             }
-            else if(height[right]<height[left]){
+            else{
                 right--;
             }
-            else{
-                if(height[right-1]<height[left+1]){
-                    right--;
-                }
-                else{
-                    left++;
-                }
-            }
+            // else if(height[right]<height[left]){
+            //     right--;
+            // }
+            // else{
+            //     if(height[right-1]<height[left+1]){
+            //         right--;
+            //     }
+            //     else{
+            //         left++;
+            //     }
+            // }
         }
         return result;
     }
