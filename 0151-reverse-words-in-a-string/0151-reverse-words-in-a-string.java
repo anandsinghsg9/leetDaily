@@ -1,36 +1,28 @@
 class Solution {
     public String reverseWords(String s) {
         int left=0;
-        HashMap <Integer,String> map=new HashMap<>();
-        int point=0;
-        int value=1;
-        String word="";
-        char check=' ';
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i)!=check){
-                word+=s.charAt(i);
-                point=0;
+        int right=0;
+        String output="";
+        StringBuilder words=new StringBuilder("");
+        while(right<s.length()){
+            if(s.charAt(right)!=' '){
+                words.append(s.charAt(right));
+                left=1;
             }
-            else{
-                point=1;
+            else if(left==1){
+                output=" "+words+output;
+                words.setLength(0); 
+                left=0;   
             }
-            if(word.length()>0 && point==1){
-                map.put(value,word);
-                word="";
-                value++;
-            }
+            right++;
         }
-        if(word!=""){
-                map.put(value,word);
-                point=0;
-            }
-        word="";
-        while(point<value){
-            word+=map.get(value-point)+" ";
-            point++;
+        if(left==1){
+            output=words+output;
         }
-        word=word.substring(0,word.length()-1);
-        return word;
+        else {
+            output=output.substring(1);
+        }
+        return output;
     }
 }
 
