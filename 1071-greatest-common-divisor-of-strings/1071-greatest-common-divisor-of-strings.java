@@ -3,7 +3,10 @@ class Solution {
         int len1=str1.length();
         int len2=str2.length();
         int answer=0;
-        for(int i=Math.max(len1,len2);i>0;i--){
+        if(str1.equals(str2)){
+            return str1;
+        }
+        for(int i=Math.max(len1,len2)/2;i>0;i--){
             if(len1%i==0 && len2%i==0){
                 String substr=str1.substring(0,i);
                 StringBuilder newstr1=new StringBuilder();
