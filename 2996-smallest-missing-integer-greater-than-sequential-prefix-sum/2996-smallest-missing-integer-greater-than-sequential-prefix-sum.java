@@ -1,9 +1,5 @@
 class Solution {
     public int missingInteger(int[] nums) {
-        HashSet<Integer> set=new  HashSet<>();
-        for(int i=0;i<nums.length;i++){
-            set.add(nums[i]);
-        }
         int sum=nums[0];
         int point=1;
         int done=0;
@@ -16,9 +12,28 @@ class Solution {
             }
             point++;
         }
-        while(set.contains(sum)){
-            sum++;
+        Arrays.sort(nums);
+        point=nums.length-1;
+        done=0;
+        while(done!=1){
+            if(sum<nums[point]){
+                point--;
+            }
+            else if(sum==nums[point]){
+                point++;
+                if(point==nums.length){
+                    done=1;
+                }
+                else if(sum==nums[point]){
+                    sum--;
+                }
+                sum++;
+            }
+            else{
+                done=1;
+            }
         }
+        
         return sum;
     }
 }
