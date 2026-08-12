@@ -12,10 +12,12 @@ class Solution {
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
             right++;
             if(map.get(nums[i])>k){
-                while(map.get(nums[i])>k){
+                while(nums[left]!=nums[i]){
                     map.put(nums[left],map.get(nums[left])-1);
                     left++;
                 }
+                map.put(nums[left],map.get(nums[left])-1);
+                left++;
             }
             int step=right-left+1;
             size=Math.max(step,size);
